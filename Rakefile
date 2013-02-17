@@ -8,7 +8,9 @@ task :install => [:submodule_init, :submodules] do
   puts "======================================================"
   puts
 
-  install_homebrew if RUBY_PLATFORM.downcase.include?("darwin")
+  if RUBY_PLATFORM.downcase.include?("darwin") && want_to_install?('homebrew')
+    install_homebrew
+  end
   install_rvm_binstubs
 
   # this has all the runcoms from this directory.
